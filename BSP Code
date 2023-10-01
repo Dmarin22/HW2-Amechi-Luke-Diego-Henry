@@ -1,1 +1,92 @@
+public class B_Box {
+      
+      private double x1;
+      private double y1;
+      private double x2;
+      private double y2;
+      
+      
+      public B_Box(double x1, double y1,double x2,double y2) {
+            
+            this.x1 = x1;
+            this.y1 = y1;
+            this.x2 = x2;
+            this.y2 = y2;
+            
+      }
+      
+      public static double[] dimensions(double x1, double y1, double x2, double y2) {
+            
+            double x_dist;
+            double y_dist;
+            double[] ret = new double[2];
+            
+            if(x1 == Double.MAX_VALUE || x2 == Double.MAX_VALUE) {
+                  x_dist = Double.MAX_VALUE;
+            }
+            else {
+                  if(x1 > x2) {
+                        x_dist = x1 - x2;
+                  }
+                  else {
+                        x_dist = x2 - x1;
+                  }
+            }
+            if(y1 == Double.MAX_VALUE || y2 == Double.MAX_VALUE) {
+                  y_dist = Double.MAX_VALUE;
+            }
+            else {
+                  if(y1 > y2) {
+                        y_dist = y1 - y2;
+                  }
+                  else {
+                        y_dist = y2 - y1;
+                  }
+            }
+            
+            ret[0] = x_dist;
+            ret[1] = y_dist;
+            
+            return ret;
+            
+      }
+      
+      public String toString() {
+            
+            String output = "";
+            double[] x = dimensions(x1,y1,x2,y2);
+            if(x[0] == Double.MAX_VALUE && x[1] == Double.MAX_VALUE) {
+                  return output;
+            }
+            else if(x[0] == Double.MAX_VALUE) {
+                  for(int i = 0; i < x[1];i++) {
+                        output+="-";
+                  }     
+            }
+            else if(x[1] == Double.MAX_VALUE) {
+                  for(int i = 0; i < x[0];i++) {
+                        output+="-";
+                        output+="\n";
+                  }     
+            }
+            else {
+                  for(int r = 0; r < x[1];r++) {
+                        for(int c = 0; c < x[0]; c++) {
+                              output += "*" + " ";
+                        }
+                        output += "\n";
+                  }
+            }
+            return output;
+      }
+      
+      public static void main(String[] args) {
+            
+            B_Box a = new B_Box(Double.MAX_VALUE,0,10,22);
+            System.out.println(a);
+            
+      }
+      
+      
 
+}
