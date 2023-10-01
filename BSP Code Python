@@ -1,0 +1,45 @@
+class B_Box:
+
+    def __init__(self, x1, y1, x2, y2):
+        self.x1 = x1
+        self.y1 = y1
+        self.x2 = x2
+        self.y2 = y2
+
+    @staticmethod
+    def dimensions(x1, y1, x2, y2):
+        max_val = float('inf')
+        
+        if x1 == max_val or x2 == max_val:
+            x_dist = max_val
+        else:
+            x_dist = abs(x2 - x1)
+        
+        if y1 == max_val or y2 == max_val:
+            y_dist = max_val
+        else:
+            y_dist = abs(y2 - y1)
+        
+        return (x_dist, y_dist)
+
+    def __str__(self):
+        x = self.dimensions(self.x1, self.y1, self.x2, self.y2)
+        output = ""
+        max_val = float('inf')
+        
+        if x[0] == max_val and x[1] == max_val:
+            return output
+        elif x[0] == max_val:
+            output += "-" * int(x[1])
+        elif x[1] == max_val:
+            output += ("-" + "\n") * int(x[0])
+        else:
+            for r in range(int(x[1])):
+                output += "* " * int(x[0])
+                output += "\n"
+
+        return output
+
+if __name__ == '__main__':
+    a = B_Box(float('inf'), 0, 10, 22)
+    print(a)
